@@ -1,0 +1,15 @@
+<h1>Customers#new</h1>
+<p>Find me in app/views/customers/new.html.erb</p>
+  <% if @customer.errors.present? %>
+    <%= @customer.errors.full_messages.join('<br>').html_safe %>
+  <% end %>
+<%= form_for @customer do |f| %>
+  First Name: <%= f.text_field :first_name %><br>
+  Last Name: <%= f.text_field :last_name %><br>
+  Gender: <%= f.text_field :gender %><br>
+  Enable: <%= f.check_box :enable, {}, false %><br>
+  <%= f.fields_for :contact do |co| %>
+    Email: <%= co.text_field :email %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
